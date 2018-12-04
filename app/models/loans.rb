@@ -6,8 +6,13 @@ class Loan < ActiveRecord::Base
 attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
 =end
   def periodic_rate
-    @annual_rate / 12
+    self.annual_rate / 12
   end
+
+  def origination_fees
+    self.loan_face_value - self.loan_present_value
+  end
+
 
   def monthly_payment
     r = self.periodic_rate

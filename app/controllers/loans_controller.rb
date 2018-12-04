@@ -4,7 +4,6 @@ class LoansController < ApplicationController
     if !logged_in?
       redirect to '/login'
     else
-      # still need the loans of that user to load.
       @loans = Loan.all.select do |l|
          l.user_id == current_user.id
       end
