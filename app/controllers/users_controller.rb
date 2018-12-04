@@ -4,7 +4,7 @@ class UsersController < ApplicationController
       if !logged_in?
         redirect to '/login'
       else
-        @loans = Loans.find_by(:user_id => current_user)
+        @loans = Loan.find_by(:user_id => current_user)
         erb :'users/show'
       end
     end
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   get '/logout' do
     if logged_in?
-      sessions.destroy
+      session.destroy
       redirect to '/login'
     else
       redirect to '/signup'
