@@ -39,13 +39,13 @@ class LoansController < ApplicationController
 
   end
 
+
   get '/loans/:id' do
     if logged_in?
       @loan = Loan.find_by_id(params[:id])
       if @loan && @loan.user == current_user
         erb :'loans/show_loan'
       else
-        binding.pry 
         redirect to '/'
       end
     else
@@ -54,6 +54,16 @@ class LoansController < ApplicationController
   end
 
   get 'loans/:id/edit' do
+    if logged_in?
+      @loan = Loan.find_by_id(params[:id])
+      if @loan && @loan.user == current_user
+        erb :'loans/edit_loan'
+      else
+        redirect to '/'
+      end
+    else
+      redirect to '/login'
+    end
   end
 
   patch 'loans/:id' do
