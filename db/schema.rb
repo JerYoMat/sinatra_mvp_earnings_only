@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "loans", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "loan_face_value"
-    t.integer  "loan_present_value"
-    t.integer  "loan_term"
-    t.integer  "annual_rate"
+    t.float    "loan_face_value"
+    t.float    "loan_present_value"
+    t.float    "loan_term"
+    t.float    "annual_rate"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "total_amount"
+    t.float    "total_amount"
   end
 
   create_table "users", force: :cascade do |t|
