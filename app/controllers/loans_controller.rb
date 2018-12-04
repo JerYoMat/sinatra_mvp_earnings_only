@@ -3,7 +3,7 @@ class LoansController < ApplicationController
   get '/loans' do
   end
 
-  get '/loans/new'
+  get '/loans/new' do 
   end
 
   post '/loans' do
@@ -16,7 +16,6 @@ class LoansController < ApplicationController
   end
 
   patch 'loans/:id' do
-  end 
-
+  end
 
 end
