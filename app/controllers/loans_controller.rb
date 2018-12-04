@@ -53,7 +53,7 @@ class LoansController < ApplicationController
     end
   end
 
-  get 'loans/:id/edit' do
+ get '/loans/:id/edit'do
     if logged_in?
       @loan = Loan.find_by_id(params[:id])
       if @loan && @loan.user == current_user
