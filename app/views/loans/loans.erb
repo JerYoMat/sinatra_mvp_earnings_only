@@ -2,8 +2,8 @@
 <p> Welcome, <%= current_user.username %>
 <h2> Your loans and calculated monthly payments </h2>
 
-<% @tweets.each do |tweet| %>
+<% @loans.each do |loan| %>
   <div>
-    <%= tweet.content %>
+    <%= loan.loan_face_value %>
   </div>
 <% end %>
