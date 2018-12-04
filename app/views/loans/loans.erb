@@ -1,7 +1,7 @@
 
 <p> Welcome, <%= current_user.username %>
 <h2> Your loans and calculated monthly payments </h2>
-<% if @loans == nil %>
+<% if @loans != nil %>
   <% @loans.each do |loan| %>
     <div>
       <%= loan.loan_face_value %>

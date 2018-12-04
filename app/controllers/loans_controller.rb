@@ -5,7 +5,9 @@ class LoansController < ApplicationController
       redirect to '/login'
     else
       # still need the loans of that user to load.
-      @loans = 4
+      @loans = Loan.all.select do |l|
+         l.user_id == current_user.id
+      end
       erb :'/loans/loans'
      end
   end
