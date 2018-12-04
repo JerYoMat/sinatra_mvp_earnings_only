@@ -1,7 +1,18 @@
 class LoansController < ApplicationController
 
+  get '/loans' do
+    if !logged_in?
+      redirect to '/login'
+    else
+      # still need the loans of that user to load. 
+      @loans = 4
+      erb :'/loans/loans'
+     end
+  end
+
 
   get '/loans/new' do
+
   end
 
   post '/loans' do
