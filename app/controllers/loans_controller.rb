@@ -66,7 +66,37 @@ class LoansController < ApplicationController
     end
   end
 
-  patch 'loans/:id' do
+  patch '/loans/:id' do
+    if logged_in?
+        if params[:loan_amount] != "" && params[:origination_fees] != "" && params[:loan_term] != "" && params[:annual_rate] != ""
+          @loan = Loan.find_by_id(params[:id])
+          if @loan && @loan.user == current_user
+            if @loan.update(loan_face_value: params[:loan_amount], loan_present_value: params[:origination_fees], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
+              redirect to "/loans/#{@loan.id}"
+            else
+              redirect to "/loans/#{@loan.id}/edit"
+            end
+          else
+            redirect to '/loans'
+          end
+        else
+          redirect to '/loans/:id/edit'
+        end
+    else
+      redirect to '/login'
+    end
+  end
+
+  delete '/loans/:id/delete' do
+    if logged_in?
+      @loan = Loan.find_by_id(params[:id])
+      if @loan && @loan.user == current_user
+        @loan.delete
+      end
+      redirect to '/loans'
+    else
+      redirect to '/login'
+    end
   end
 
 end

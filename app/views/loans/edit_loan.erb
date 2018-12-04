@@ -1,6 +1,6 @@
 <h2>Add a new loan to compare</h2>
 
-<form method="post" action="/tweets/<%=@loan.id%>">
+<form method="post" action="/loans/<%=@loan.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <p>Loan Amount: <input type="text" name="loan_amount" value=<%= @loan.loan_face_value%>></p>
   <% origination_fees = @loan.loan_face_value - @loan.loan_present_value %>
