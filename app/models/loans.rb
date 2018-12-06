@@ -24,6 +24,7 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
     exponent = n * (-1)
     almostdenominator = rplusone ** exponent
     denominator = 1 - almostdenominator
+    binding.pry 
     numerator / denominator
   end
 
