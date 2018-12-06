@@ -18,6 +18,7 @@
         <th scope="col">Term of Loan</th>
         <th scope="col">Monthly Payment</th>
         <th scope="col">Total Paid at End</th>
+        <th scope="col"></th>
       </tr>
     </thead>
 <% @loans.each do |loan| %>
@@ -30,6 +31,7 @@
         <td><%= loan.loan_term %></td>
         <td><%= loan.monthly_payment %></td>
         <td><%= loan.total_amount %></td>
+        <td><a href="/loans/<%=loan.id%>/edit">edit loan</a></td>
       </tr>
     </tbody>
 <% end %>
