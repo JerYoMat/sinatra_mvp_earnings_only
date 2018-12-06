@@ -3,7 +3,6 @@ class CreateLoans < ActiveRecord::Migration
     create_table :loans do |t|
       t.belongs_to :user
       t.float :loan_face_value
-      t.float :loan_present_value
       t.float :loan_term
       t.float :annual_rate
       t.timestamps

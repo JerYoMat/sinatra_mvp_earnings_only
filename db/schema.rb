@@ -16,7 +16,6 @@ ActiveRecord::Schema.define(version: 3) do
   create_table "loans", force: :cascade do |t|
     t.integer  "user_id"
     t.float    "loan_face_value"
-    t.float    "loan_present_value"
     t.float    "loan_term"
     t.float    "annual_rate"
     t.datetime "created_at"

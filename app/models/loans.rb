@@ -11,9 +11,7 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
     periodic_rate
   end
 
-  def origination_fees
-    self.loan_face_value - self.loan_present_value
-  end
+
 
 
   def monthly_payment
@@ -26,7 +24,8 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
     exponent = n * (-1)
     almostdenominator = rplusone ** exponent
     denominator = 1 - almostdenominator
-    numerator / denominator
+    p = numerator / denominator
+
   end
 
 end
