@@ -43,7 +43,9 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:password] == ""
        redirect to '/signup'
-     else
+    elsif User.find_by(:username => params[:username])
+      redirect to '/signup'
+    else
        @user = User.create_from_form(params)
        session[:user_id] = @user.id
        redirect to '/loans'
