@@ -6,7 +6,9 @@ class Loan < ActiveRecord::Base
 attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
 =end
   def periodic_rate
-    self.annual_rate / 12
+    decimal = self.annual_rate / 100
+    periodic_rate = decimal / 12
+    periodic_rate
   end
 
   def origination_fees
@@ -24,7 +26,6 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
     exponent = n * (-1)
     almostdenominator = rplusone ** exponent
     denominator = 1 - almostdenominator
-    binding.pry 
     numerator / denominator
   end
 
