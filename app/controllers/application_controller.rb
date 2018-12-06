@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do
     erb :index
-  end 
+  end
 
   helpers do
     def current_user
@@ -19,6 +19,10 @@ class ApplicationController < Sinatra::Base
 
     def logged_in?
       !!current_user
+    end
+
+    def authorized_user
+        @loan && @loan.user == current_user
     end
   end
 

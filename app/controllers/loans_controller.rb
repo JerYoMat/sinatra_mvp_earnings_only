@@ -43,7 +43,7 @@ class LoansController < ApplicationController
   get '/loans/:id' do
     if logged_in?
       @loan = Loan.find_by_id(params[:id])
-      if @loan && @loan.user == current_user
+      if authorized_user
         erb :'loans/show_loan'
       else
         redirect to '/'
@@ -56,7 +56,7 @@ class LoansController < ApplicationController
  get '/loans/:id/edit'do
     if logged_in?
       @loan = Loan.find_by_id(params[:id])
-      if @loan && @loan.user == current_user
+      if authorized_user
         erb :'loans/edit_loan'
       else
         redirect to '/'
@@ -70,7 +70,7 @@ class LoansController < ApplicationController
     if logged_in?
         if params[:loan_amount] != "" && params[:origination_fees] != "" && params[:loan_term] != "" && params[:annual_rate] != ""
           @loan = Loan.find_by_id(params[:id])
-          if @loan && @loan.user == current_user
+          if authorized_user
             if @loan.update(loan_face_value: params[:loan_amount], loan_present_value: params[:origination_fees], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
               redirect to "/loans/#{@loan.id}"
             else
@@ -90,7 +90,7 @@ class LoansController < ApplicationController
   delete '/loans/:id/delete' do
     if logged_in?
       @loan = Loan.find_by_id(params[:id])
-      if @loan && @loan.user == current_user
+      if authorized_user
         @loan.delete
       end
       redirect to '/loans'
