@@ -24,6 +24,10 @@ class ApplicationController < Sinatra::Base
     def authorized_user
         @loan && @loan.user == current_user
     end
+
+    def required_fields_have_data
+       params[:loan_amount] != "" &&  params[:loan_term] != "" && params[:annual_rate] != ""
+    end
   end
 
 

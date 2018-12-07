@@ -1,18 +1,11 @@
 class Loan < ActiveRecord::Base
   belongs_to :user
-=begin
-#for when in irb
 
-attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
-=end
   def periodic_rate
     decimal = self.annual_rate / 100
     periodic_rate = decimal / 12
     periodic_rate
   end
-
-
-
 
   def monthly_payment
     r = self.periodic_rate
@@ -25,8 +18,8 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
     almostdenominator = rplusone ** exponent
     denominator = 1 - almostdenominator
     p = numerator / denominator
-
   end
+
 
 end
 =begin
