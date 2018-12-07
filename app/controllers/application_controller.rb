@@ -35,7 +35,19 @@ class ApplicationController < Sinatra::Base
       l
     end
 
+    def update_loan_from_form_data
+      @loan.update(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
+    end
 
+    def find_this_loan
+      @loan = Loan.find_by_id(params[:id])
+    end
+
+    def find_loans_belonging_to_user
+      Loan.all.select do |l|
+         l.user_id == current_user.id
+      end
+    end
 
   end
 
