@@ -25,8 +25,19 @@ class ApplicationController < Sinatra::Base
         @loan && @loan.user == current_user
     end
 
-    def required_fields_have_data
+    def have_required_data?
        params[:loan_amount] != "" &&  params[:loan_term] != "" && params[:annual_rate] != ""
+    end
+
+    def required_data_valid?
+       conditions = [params[:loan_amount].to_f > 0,
+                     params[:loan_term].to_f > 0,
+                     params[:annual_rate].to_f > 1]
+      let_pass = true
+      conditions.each do |c|
+         let_pass = false if c == false
+      end
+      let_pass
     end
 
     def create_loan_from_form_data

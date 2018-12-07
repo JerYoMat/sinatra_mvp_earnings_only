@@ -20,7 +20,7 @@ class LoansController < ApplicationController
 
   post '/loans' do
     if logged_in?
-      if required_fields_have_data
+      if have_required_data? && required_data_valid?
         @loan = create_loan_from_form_data
           if @loan.save
             redirect to "/loans/#{@loan.id}"
