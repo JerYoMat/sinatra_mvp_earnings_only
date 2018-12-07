@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
       !!current_user
     end
 
-    def authorized_user
+    def authorized_user?
         @loan && @loan.user == current_user
     end
 

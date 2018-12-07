@@ -12,6 +12,7 @@
   <table class="table table-bordered">
     <thead class="black white-text">
       <tr>
+        <th scope="col">Lender</th>
         <th scope="col">Loan Amount</th>
         <th scope="col">Annual Interest Rate</th>
         <th scope="col">Term of Loan</th>
@@ -24,7 +25,7 @@
 <% @loans.each do |loan| %>
     <tbody>
       <tr>
-
+        <td><%= loan.lender %></td>
         <td><%= loan.loan_face_value %></td>
         <td><%= loan.annual_rate %></td>
         <td><%= loan.loan_term %></td>

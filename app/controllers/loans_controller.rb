@@ -40,7 +40,7 @@ class LoansController < ApplicationController
   get '/loans/:id' do
     if logged_in?
       find_this_loan
-      if authorized_user
+      if authorized_user?
         erb :'loans/show_loan'
       else
         redirect to '/'
@@ -53,7 +53,7 @@ class LoansController < ApplicationController
  get '/loans/:id/edit'do
     if logged_in?
       find_this_loan
-      if authorized_user
+      if authorized_user?
         erb :'loans/edit_loan'
       else
         redirect to '/'
@@ -67,7 +67,7 @@ class LoansController < ApplicationController
     if logged_in?
         if required_fields_have_data
           find_this_loan
-          if authorized_user
+          if authorized_user?
             if update_loan_from_form_data
               redirect to "/loans/#{@loan.id}"
             else
@@ -87,7 +87,7 @@ class LoansController < ApplicationController
   delete '/loans/:id/delete' do
     if logged_in?
       find_this_loan
-      if authorized_user
+      if authorized_user?
         @loan.delete
       end
       redirect to '/loans'

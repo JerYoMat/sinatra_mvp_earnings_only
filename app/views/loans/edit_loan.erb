@@ -2,8 +2,25 @@
 
 <form method="post" action="/loans/<%=@loan.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <p>Loan Amount: <input type="text" name="loan_amount" value=<%= @loan.loan_face_value%>></p>
-  <p>Term of Loan(in months): <input type="text" name="loan_term"value=<%= @loan.loan_term%>></p>
-  <p>Annual % Interest Rate: <input type="text" name="annual_rate" value=<%= @loan.annual_rate%>></p>
+  <div class="form-group">
+    <label for="lender">Name of Lender:     </label>
+    <input type="text" name="lender" id="lender" value=<%= @loan.lender%>>
+  </div>
+  <div class="form-group">
+    <label for="loan_amount">Loan Amount:     </label>
+    <input type="text" name="loan_amount" id="loan_amount" value=<%= @loan.loan_face_value%>>
+  </div>
+  <div class="form-group">
+    <label for="loan_term">Loan Term(# Months):       </label>
+    <input type="text" name="loan_term" id="loan_term" value=<%= @loan.loan_term%>>
+  </div>
+  <div class="form-group">
+    <label for="annual_rate">Annual Rate(%):     </label>
+    <input type="text" name="annual_rate" id="annual_rate" value=<%= @loan.annual_rate %>>
+  </div>
   <input class="btn btn-primary" type="submit" id='submit' value="submit">
 </form>
+
+
+
+  <div class="col-md-2"></div>
