@@ -28,6 +28,15 @@ class ApplicationController < Sinatra::Base
     def required_fields_have_data
        params[:loan_amount] != "" &&  params[:loan_term] != "" && params[:annual_rate] != ""
     end
+
+    def create_loan_from_form_data
+      l = current_user.loans.build(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
+      l.total_amount = l.loan_term * l.monthly_payment
+      l
+    end
+
+
+
   end
 
 

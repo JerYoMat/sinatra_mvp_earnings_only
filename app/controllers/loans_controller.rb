@@ -23,8 +23,7 @@ class LoansController < ApplicationController
   post '/loans' do
     if logged_in?
       if required_fields_have_data
-        @loan = current_user.loans.build(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
-        @loan.total_amount = @loan.loan_term * @loan.monthly_payment
+        @loan = create_loan_from_form_data
           if @loan.save
             redirect to "/loans/#{@loan.id}"
           else
@@ -68,7 +67,7 @@ class LoansController < ApplicationController
 
   patch '/loans/:id' do
     if logged_in?
-        if params[:loan_amount] != "" && params[:origination_fees] != "" && params[:loan_term] != "" && params[:annual_rate] != ""
+        if required_fields_have_data
           @loan = Loan.find_by_id(params[:id])
           if authorized_user
             if @loan.update(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
