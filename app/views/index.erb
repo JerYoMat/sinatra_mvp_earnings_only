@@ -4,12 +4,13 @@
 
 <nav>
   <% if logged_in? %>
-    <p>Please sign in or sign up below:</p>
-    <a href="/loans/new"> Add loan for comparison </a>
+
+    <a href="/loans/new"> Add new loan to comparison </a>
     <a href="/logout"> Log Out </a>
     <p>Welcome, <%=current_user.username %></p>
 
   <% else %>
+    <p>Please sign in or sign up below:</p>
     <a href="/signup">Sign Up</a>
     <a href="/login"> Sign In </a>
   <%end %>

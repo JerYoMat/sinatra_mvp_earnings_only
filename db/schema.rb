@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 20181207020420) do
 
   create_table "loans", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 3) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "total_amount"
+    t.string   "lender"
   end
 
   create_table "users", force: :cascade do |t|

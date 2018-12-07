@@ -16,7 +16,7 @@ attr_accessor :loan_face_value, :loan_present_value, :loan_term, :annual_rate
 
   def monthly_payment
     r = self.periodic_rate
-    pv = self.loan_present_value
+    pv = self.loan_face_value
     n = self.loan_term
 
     numerator = r * pv
