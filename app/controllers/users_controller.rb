@@ -1,15 +1,6 @@
 require 'pry'
 class UsersController < ApplicationController
 
-    get '/users/:slug' do
-      if !logged_in?
-        redirect to '/login'
-      else
-        @loans = Loan.find_by(:user_id == current_user.id)
-        erb :'loans/loans'
-      end
-    end
-
 
   get '/login' do
     if logged_in?
