@@ -30,9 +30,14 @@ class ApplicationController < Sinatra::Base
     end
 
     def required_data_valid?
-       conditions = [params[:loan_amount].to_f > 0,
-                     params[:loan_term].to_f > 0,
-                     params[:annual_rate].to_f > 1]
+       loan_amount = params[:loan_amount]
+       loan_term = params[:loan_term]
+       annual_rate = params[:annual_rate]
+       conditions = [loan_amount.to_f > 0,
+                     loan_term.to_f > 0,
+                     annual_rate.to_f > 1]
+# still need to add in check that input is a number
+
       let_pass = true
       conditions.each do |c|
          let_pass = false if c == false
