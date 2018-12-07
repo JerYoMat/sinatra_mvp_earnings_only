@@ -3,6 +3,7 @@
 <div class="col-md-2">
 </div>
 <div class="col-md-8">
+   <h2>Lender: <%=@loan.lender%></h2>
   <table class="table table-bordered">
     <thead class="black white-text">
       <tr>
@@ -11,7 +12,10 @@
         <th scope="col">Term of Loan</th>
         <th scope="col">Monthly Payment</th>
         <th scope="col">Total Paid at End</th>
+        <th scope="col">Last Change</th>
         <th scope="col"></th>
+        <th scope="col"></th>
+
       </tr>
     </thead>
 
@@ -23,7 +27,12 @@
         <td><%= @loan.loan_term %></td>
         <td><%= @loan.monthly_payment %></td>
         <td><%= @loan.total_amount %></td>
-        <td><a href="/loans/<%=@loan.id%>/edit">edit loan</a></td>
+        <td><%=@loan.updated_at.strftime(" %b %e %Y")%></td>
+        <td><a href="/loans/<%=@loan.id%>/edit">edit</a></td>
+        <td><form method="post" action="/loans/<%=@loan.id%>/delete">
+          <input id="hidden" type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="Delete Loan">
+        </form></td>
       </tr>
     </tbody>
 
@@ -33,13 +42,3 @@
 
   <div class="col-md-2">
   </div>
-
-
-
-
-
-
-<form method="post" action="/loans/<%=@loan.id%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Loan">
-</form>

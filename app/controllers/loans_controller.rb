@@ -65,7 +65,7 @@ class LoansController < ApplicationController
 
   patch '/loans/:id' do
     if logged_in?
-        if required_fields_have_data
+        if have_required_data? && required_data_valid?
           find_this_loan
           if authorized_user?
             if update_loan_from_form_data
