@@ -317,7 +317,7 @@ describe ApplicationController do
 
     context "logged out" do
       it 'does not load -- instead redirects to login' do
-        get '/tweets/1/edit'
+        get '/loans/1/edit'
         expect(last_response.location).to include("/login")
       end
     end
@@ -325,44 +325,45 @@ describe ApplicationController do
 
   describe 'delete action' do
     context "logged in" do
-      it 'lets a user delete their own tweet if they are logged in' do
-        user = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
+      it 'lets a user delete their own loan if they are logged in' do
+        user = User.create(:username => "becky567",  :password => "kittens")
+        loan = Loan.create(:loan_face_value => 2000, :loan_term => 36, :annual_rate => 12, :lender => "TestBank7", :user_id => user.id)
         visit '/login'
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
-        visit 'tweets/1'
-        click_button "Delete Tweet"
+        visit "loans/#{loan.id}"
+        click_button "Delete Loan"
         expect(page.status_code).to eq(200)
-        expect(Tweet.find_by(:content => "tweeting!")).to eq(nil)
+        expect(Loan.find_by(:lender => "TestBank7")).to eq(nil)
       end
 
-      it 'does not let a user delete a tweet they did not create' do
-        user1 = User.create(:username => "becky567", :email => "starz@aol.com", :password => "kittens")
-        tweet1 = Tweet.create(:content => "tweeting!", :user_id => user1.id)
+      it 'does not let a user delete a loan they did not create' do
+        user1 = User.create(:username => "becky567", :password => "kittens")
+        loan1 = Loan.create(:loan_face_value => 3000, :loan_term => 12, :annual_rate => 10, :lender => "TestBankUser1use2", :user_id => user1.id)
 
-        user2 = User.create(:username => "silverstallion", :email => "silver@aol.com", :password => "horses")
-        tweet2 = Tweet.create(:content => "look at this tweet", :user_id => user2.id)
+        user2 = User.create(:username => "silverstallion", :password => "horses")
+        loan2 = Loan.create(:loan_face_value => 4000, :loan_term => 24, :annual_rate => 8, :lender => "TestBankUser2use2", :user_id => user2.id)
+
 
         visit '/login'
 
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
-        visit "tweets/#{tweet2.id}"
-        click_button "Delete Tweet"
+        visit "loans/#{loan2.id}"
+        click_button "Delete Loan"
         expect(page.status_code).to eq(200)
-        expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
-        expect(page.current_path).to include('/tweets')
+        expect(Loan.find_by(:lender => "TestBankUser2use2")).to be_instance_of(Loan)
+        expect(page.current_path).to include('/loans')
       end
     end
 
     context "logged out" do
-      it 'does not load let user delete a tweet if not logged in' do
-        tweet = Tweet.create(:content => "tweeting!", :user_id => 1)
-        visit '/tweets/1'
+      it 'does not load let user delete a loan if not logged in' do
+      loan = Loan.create(:loan_face_value => 2000, :loan_term => 36, :annual_rate => 12, :lender => "TestBank8", :user_id => 1)
+        visit '/loans/1'
         expect(page.current_path).to eq("/login")
       end
     end
