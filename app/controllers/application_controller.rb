@@ -46,7 +46,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def create_loan_from_form_data
-      l = current_user.loans.build(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
+      l = current_user.loans.build(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate], lender: params[:lender])
       l.total_amount = l.loan_term * l.monthly_payment
       l
     end
