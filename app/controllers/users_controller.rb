@@ -1,5 +1,6 @@
-require 'pry'
+
 class UsersController < ApplicationController
+
 
 
   get '/login' do

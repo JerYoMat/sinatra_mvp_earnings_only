@@ -1,3 +1,5 @@
+require './config/environment'
+
 class Loan < ActiveRecord::Base
   belongs_to :user
 
