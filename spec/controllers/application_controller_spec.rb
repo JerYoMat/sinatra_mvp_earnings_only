@@ -290,7 +290,7 @@ describe ApplicationController do
         fill_in(:lender, :with => "Lender Changed")
 
         click_button 'submit'
-    
+
         expect(Loan.find_by(:lender => "Lender Changed")).to be_instance_of(Loan)
         expect(Loan.find_by(:lender =>"TestBank6")).to eq(nil)
         expect(page.status_code).to eq(200)
@@ -305,12 +305,13 @@ describe ApplicationController do
         fill_in(:password, :with => "kittens")
         click_button 'submit'
         visit "/loans/#{loan.id}/edit"
-
+        loan_id = loan.id
         fill_in(:loan_amount, :with => "")
 
         click_button 'submit'
-        expect(Loan.find(loan.id).loan_face_value.to eq(2999))
-        expect(page.current_path).to eq("/loans/#{loan.id}/edit")
+        check_loan = Loan.find(loan_id)
+        expect(check_loan.loan_face_value).to  eq(2999)
+        expect(page.current_path).to eq("/loans")
       end
     end
 

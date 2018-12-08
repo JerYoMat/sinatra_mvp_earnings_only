@@ -56,7 +56,7 @@ class LoansController < ApplicationController
       if authorized_user?
         erb :'loans/edit_loan'
       else
-        redirect to '/'
+        redirect to '/loans'
       end
     else
       redirect to '/login'
