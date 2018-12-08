@@ -52,7 +52,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def update_loan_from_form_data
-      @loan.update(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate])
+      @loan.update(loan_face_value: params[:loan_amount], loan_term: params[:loan_term], annual_rate: params[:annual_rate], lender: params[:lender])
     end
 
     def find_this_loan
