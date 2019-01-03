@@ -1,4 +1,0 @@
-
-class TAccountsController < ApplicationController
-
-end

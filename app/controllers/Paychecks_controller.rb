@@ -1,4 +1,4 @@
-class IncomeStatementLineItemsController < ApplicationController
+class PaychecksController < ApplicationController
 
     get '/loans' do
       if !logged_in?
