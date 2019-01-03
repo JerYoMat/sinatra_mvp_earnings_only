@@ -1,6 +1,7 @@
 require './config/environment'
 class User < ActiveRecord::Base
-  has_many :loans
+  has_many :income_statement_line_items
+
   validates :username, :password, presence: true
   has_secure_password
 

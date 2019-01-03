@@ -1,0 +1,4 @@
+
+class TAccountsController < ApplicationController
+
+end
